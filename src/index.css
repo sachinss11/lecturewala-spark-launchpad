@@ -47,6 +47,10 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
+  body.theme-alternate {
+    @apply bg-lecturewala2-bg text-lecturewala2-text;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-poppins font-semibold;
   }
@@ -71,5 +75,24 @@
 
   .tooltip {
     @apply absolute invisible opacity-0 transition-opacity group-hover:visible group-hover:opacity-100 z-10 py-1 px-2 bg-lecturewala-text text-white text-xs rounded pointer-events-none;
+  }
+
+  body.theme-alternate .course-card {
+    @apply rounded-2xl border-2 border-gray-100;
+  }
+}
+
+@layer utilities {
+  .animate-bounce-slow {
+    animation: bounce-slow 6s ease-in-out infinite;
+  }
+  
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translateY(0) rotate(2deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(-1deg);
+    }
   }
 }

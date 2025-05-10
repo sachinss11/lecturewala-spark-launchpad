@@ -1,5 +1,5 @@
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
 type Theme = "default" | "alternate";
 
@@ -12,6 +12,15 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>("default");
+
+  // Apply theme-specific body class
+  useEffect(() => {
+    if (theme === "alternate") {
+      document.body.classList.add("theme-alternate");
+    } else {
+      document.body.classList.remove("theme-alternate");
+    }
+  }, [theme]);
 
   const toggleTheme = () => {
     setTheme(theme === "default" ? "alternate" : "default");

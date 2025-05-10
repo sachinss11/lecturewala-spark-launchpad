@@ -2,6 +2,7 @@
 import CourseCard from "./CourseCard";
 import { useTheme } from "@/hooks/use-theme";
 import { cn } from "@/lib/utils";
+import { ArrowRight } from "lucide-react";
 
 const FeaturedCourses = () => {
   const { theme } = useTheme();
@@ -60,24 +61,38 @@ const FeaturedCourses = () => {
 
   return (
     <div className={cn(
-      "section-padding",
-      isAlternate ? "bg-lecturewala2-bg-alt" : "bg-lecturewala-bg-alt"
+      isAlternate ? "bg-white py-24" : "section-padding bg-lecturewala-bg-alt"
     )}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold">Featured Courses</h2>
+        <div className={cn(
+          "flex items-center justify-between mb-8",
+          isAlternate && "flex-col text-center mb-12"
+        )}>
+          <h2 className={cn(
+            isAlternate ? "text-3xl font-bold uppercase tracking-wide mb-2" : "text-2xl md:text-3xl font-bold"
+          )}>
+            {isAlternate ? "Top Rated Courses" : "Featured Courses"}
+          </h2>
+          
           <a 
             href="/courses" 
             className={cn(
-              "font-medium hover:underline",
-              isAlternate ? "text-lecturewala2-primary-dark" : "text-lecturewala-yellow-dark"
+              "font-medium hover:underline flex items-center",
+              isAlternate 
+                ? "text-lecturewala2-primary-dark mt-2" 
+                : "text-lecturewala-yellow-dark"
             )}
           >
-            View All
+            {isAlternate && <span>Explore All Courses</span>}
+            {!isAlternate && <span>View All</span>}
+            {isAlternate && <ArrowRight className="ml-1 h-4 w-4" />}
           </a>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className={cn(
+          "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6",
+          isAlternate && "gap-8"
+        )}>
           {courses.map((course) => (
             <CourseCard 
               key={course.id}

@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Filter } from "lucide-react";
 import { useState } from "react";
 import { useTheme } from "@/hooks/use-theme";
 import { cn } from "@/lib/utils";
@@ -28,31 +28,49 @@ const CategoryFilter = () => {
   };
 
   return (
-    <div className="bg-white py-6">
+    <div className={cn(
+      isAlternate ? "bg-gray-50 py-10" : "bg-white py-6"
+    )}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-2xl font-bold mb-6 text-center">Explore Our Courses</h2>
+        <h2 className={cn(
+          "font-bold mb-6 text-center",
+          isAlternate ? "text-3xl text-lecturewala2-text uppercase tracking-wide" : "text-2xl"
+        )}>
+          {isAlternate ? "Find Your Course Path" : "Explore Our Courses"}
+        </h2>
         
         {/* Mobile dropdown */}
         <div className="md:hidden relative">
           <Button 
             variant="outline"
-            className="w-full justify-between border border-gray-300"
+            className={cn(
+              "w-full justify-between border",
+              isAlternate ? "rounded-full border-lecturewala2-primary" : "border-gray-300"
+            )}
             onClick={() => setIsFilterOpen(!isFilterOpen)}
           >
-            {selectedCategory}
+            <span className="flex items-center">
+              {isAlternate && <Filter size={16} className="mr-2 text-lecturewala2-primary" />}
+              {selectedCategory}
+            </span>
             <ChevronDown size={16} />
           </Button>
           
           {isFilterOpen && (
-            <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg animate-fade-in">
+            <div className={cn(
+              "absolute z-10 w-full mt-1 bg-white border rounded-md shadow-lg animate-fade-in",
+              isAlternate ? "border-lecturewala2-primary-light rounded-2xl" : "border-gray-200"
+            )}>
               {categories.map((category) => (
                 <button
                   key={category}
-                  className={`block w-full text-left px-4 py-2 hover:bg-gray-100 ${
-                    category === selectedCategory ? 
-                      isAlternate ? "bg-lecturewala2-primary-light" : "bg-lecturewala-yellow-light" 
-                    : ""
-                  }`}
+                  className={cn(
+                    "block w-full text-left px-4 py-2 hover:bg-gray-100",
+                    category === selectedCategory ? (
+                      isAlternate ? "bg-lecturewala2-primary-light text-lecturewala2-primary" : "bg-lecturewala-yellow-light"
+                    ) : "",
+                    isAlternate && "first:rounded-t-2xl last:rounded-b-2xl"
+                  )}
                   onClick={() => handleCategorySelect(category)}
                 >
                   {category}
@@ -63,7 +81,10 @@ const CategoryFilter = () => {
         </div>
         
         {/* Desktop pills */}
-        <div className="hidden md:flex flex-wrap justify-center gap-2">
+        <div className={cn(
+          "hidden md:flex flex-wrap justify-center gap-2",
+          isAlternate && "gap-4"
+        )}>
           {categories.map((category) => (
             <Button
               key={category}
@@ -71,9 +92,10 @@ const CategoryFilter = () => {
               className={cn(
                 category === selectedCategory ? (
                   isAlternate 
-                    ? "bg-lecturewala2-primary text-white"
+                    ? "bg-lecturewala2-primary text-white shadow-md"
                     : "bg-lecturewala-yellow text-lecturewala-text"
-                ) : ""
+                ) : "",
+                isAlternate && "rounded-full px-6 hover:bg-lecturewala2-primary-light hover:text-lecturewala2-primary"
               )}
               onClick={() => handleCategorySelect(category)}
             >

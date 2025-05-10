@@ -85,7 +85,9 @@ export default {
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				sm: 'calc(var(--radius) - 4px)',
+				'2xl': '1rem',
+				'3xl': '1.5rem',
 			},
 			fontFamily: {
 				sans: ['Inter', 'system-ui', 'sans-serif'],
@@ -107,21 +109,27 @@ export default {
 				'float': {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-10px)' }
+				},
+				'bounce-slow': {
+					'0%, 100%': { transform: 'translateY(0) rotate(2deg)' },
+					'50%': { transform: 'translateY(-10px) rotate(-1deg)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.5s ease-out',
-				'float': 'float 6s ease-in-out infinite'
+				'float': 'float 6s ease-in-out infinite',
+				'bounce-slow': 'bounce-slow 6s ease-in-out infinite'
 			},
 			boxShadow: {
 				'card': '0 4px 20px rgba(0, 0, 0, 0.08)',
 				'card-hover': '0 10px 30px rgba(0, 0, 0, 0.12)',
+				'2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
 			},
 			backgroundImage: {
 				'hero-gradient': 'linear-gradient(90deg, #FFD54C20 0%, #FFFFFF 100%)',
-				'hero-gradient-alt': 'linear-gradient(90deg, #4C9EFF20 0%, #FFFFFF 100%)',
+				'hero-gradient-alt': 'linear-gradient(135deg, #E6F4FF 0%, #FFFFFF 100%)',
 				'cta-gradient': 'linear-gradient(90deg, #FFD54C40 0%, #E6F4F1 100%)',
 				'cta-gradient-alt': 'linear-gradient(90deg, #4C9EFF40 0%, #E6F4F1 100%)',
 			}
