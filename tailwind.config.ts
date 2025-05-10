@@ -62,6 +62,15 @@ export default {
 					text: "#333333",
 					"text-light": "#666666"
 				},
+				lecturewala2: {
+					primary: "#4C9EFF",
+					"primary-light": "#B3D8FF",
+					"primary-dark": "#007BFF",
+					bg: "#F0F8FF",
+					"bg-alt": "#E6F2FF",
+					text: "#2B3A4A",
+					"text-light": "#5A6B7D"
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -112,7 +121,9 @@ export default {
 			},
 			backgroundImage: {
 				'hero-gradient': 'linear-gradient(90deg, #FFD54C20 0%, #FFFFFF 100%)',
+				'hero-gradient-alt': 'linear-gradient(90deg, #4C9EFF20 0%, #FFFFFF 100%)',
 				'cta-gradient': 'linear-gradient(90deg, #FFD54C40 0%, #E6F4F1 100%)',
+				'cta-gradient-alt': 'linear-gradient(90deg, #4C9EFF40 0%, #E6F4F1 100%)',
 			}
 		}
 	},

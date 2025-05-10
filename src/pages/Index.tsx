@@ -8,10 +8,21 @@ import FacultySpotlight from "@/components/FacultySpotlight";
 import BlogSection from "@/components/BlogSection";
 import AppCTA from "@/components/AppCTA";
 import Footer from "@/components/Footer";
+import ThemeToggle from "@/components/ThemeToggle";
+import { useTheme } from "@/hooks/use-theme";
+import { cn } from "@/lib/utils";
 
 const Index = () => {
+  const { theme } = useTheme();
+  const isAlternate = theme === "alternate";
+
   return (
-    <div className="min-h-screen bg-lecturewala-bg flex flex-col">
+    <div 
+      className={cn(
+        "min-h-screen flex flex-col",
+        isAlternate ? "bg-lecturewala2-bg" : "bg-lecturewala-bg"
+      )}
+    >
       <Navbar />
       <HeroSection />
       <CategoryFilter />
@@ -21,6 +32,7 @@ const Index = () => {
       <BlogSection />
       <AppCTA />
       <Footer />
+      <ThemeToggle />
     </div>
   );
 };

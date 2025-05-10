@@ -2,6 +2,8 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import { useTheme } from "@/hooks/use-theme";
+import { cn } from "@/lib/utils";
 
 const CategoryFilter = () => {
   const categories = [
@@ -17,6 +19,8 @@ const CategoryFilter = () => {
 
   const [selectedCategory, setSelectedCategory] = useState("All Courses");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const { theme } = useTheme();
+  const isAlternate = theme === "alternate";
 
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(category);
@@ -45,7 +49,9 @@ const CategoryFilter = () => {
                 <button
                   key={category}
                   className={`block w-full text-left px-4 py-2 hover:bg-gray-100 ${
-                    category === selectedCategory ? "bg-lecturewala-yellow-light" : ""
+                    category === selectedCategory ? 
+                      isAlternate ? "bg-lecturewala2-primary-light" : "bg-lecturewala-yellow-light" 
+                    : ""
                   }`}
                   onClick={() => handleCategorySelect(category)}
                 >
@@ -62,7 +68,13 @@ const CategoryFilter = () => {
             <Button
               key={category}
               variant={category === selectedCategory ? "default" : "outline"}
-              className={category === selectedCategory ? "bg-lecturewala-yellow text-lecturewala-text" : ""}
+              className={cn(
+                category === selectedCategory ? (
+                  isAlternate 
+                    ? "bg-lecturewala2-primary text-white"
+                    : "bg-lecturewala-yellow text-lecturewala-text"
+                ) : ""
+              )}
               onClick={() => handleCategorySelect(category)}
             >
               {category}

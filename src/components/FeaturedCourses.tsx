@@ -1,7 +1,12 @@
 
 import CourseCard from "./CourseCard";
+import { useTheme } from "@/hooks/use-theme";
+import { cn } from "@/lib/utils";
 
 const FeaturedCourses = () => {
+  const { theme } = useTheme();
+  const isAlternate = theme === "alternate";
+  
   const courses = [
     {
       id: "1",
@@ -54,13 +59,19 @@ const FeaturedCourses = () => {
   ];
 
   return (
-    <div className="section-padding bg-lecturewala-bg-alt">
+    <div className={cn(
+      "section-padding",
+      isAlternate ? "bg-lecturewala2-bg-alt" : "bg-lecturewala-bg-alt"
+    )}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-2xl md:text-3xl font-bold">Featured Courses</h2>
           <a 
             href="/courses" 
-            className="font-medium text-lecturewala-yellow-dark hover:underline"
+            className={cn(
+              "font-medium hover:underline",
+              isAlternate ? "text-lecturewala2-primary-dark" : "text-lecturewala-yellow-dark"
+            )}
           >
             View All
           </a>
